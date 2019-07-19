@@ -1,0 +1,11 @@
+c:\git\HafslundStrom\ReferenceExtractor\ReferenceExtractor\bin\Debug\netcoreapp2.2\ReferenceExtractor.deps.json
+c:\git\HafslundStrom\ReferenceExtractor\ReferenceExtractor\bin\Debug\netcoreapp2.2\ReferenceExtractor.runtimeconfig.json
+c:\git\HafslundStrom\ReferenceExtractor\ReferenceExtractor\bin\Debug\netcoreapp2.2\ReferenceExtractor.runtimeconfig.dev.json
+c:\git\HafslundStrom\ReferenceExtractor\ReferenceExtractor\bin\Debug\netcoreapp2.2\ReferenceExtractor.dll
+c:\git\HafslundStrom\ReferenceExtractor\ReferenceExtractor\bin\Debug\netcoreapp2.2\ReferenceExtractor.pdb
+c:\git\HafslundStrom\ReferenceExtractor\ReferenceExtractor\obj\Debug\netcoreapp2.2\ReferenceExtractor.csprojAssemblyReference.cache
+c:\git\HafslundStrom\ReferenceExtractor\ReferenceExtractor\obj\Debug\netcoreapp2.2\ReferenceExtractor.csproj.CoreCompileInputs.cache
+c:\git\HafslundStrom\ReferenceExtractor\ReferenceExtractor\obj\Debug\netcoreapp2.2\ReferenceExtractor.AssemblyInfoInputs.cache
+c:\git\HafslundStrom\ReferenceExtractor\ReferenceExtractor\obj\Debug\netcoreapp2.2\ReferenceExtractor.AssemblyInfo.cs
+c:\git\HafslundStrom\ReferenceExtractor\ReferenceExtractor\obj\Debug\netcoreapp2.2\ReferenceExtractor.dll
+c:\git\HafslundStrom\ReferenceExtractor\ReferenceExtractor\obj\Debug\netcoreapp2.2\ReferenceExtractor.pdb
