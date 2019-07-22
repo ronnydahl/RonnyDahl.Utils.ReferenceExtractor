@@ -1,8 +1,9 @@
 ﻿using System;
 using System.IO;
-using ReferenceExtractor.Helper;
+using System.Text;
+using RonnyDahl.Utils.ReferenceExtractor.Helper;
 
-namespace ReferenceExtractor
+namespace RonnyDahl.Utils.ReferenceExtractor
 {
     class Program
     {
@@ -11,39 +12,35 @@ namespace ReferenceExtractor
             Console.Clear();
 
             var path = args.Length != 0 ? args[0] : string.Empty;
-            //path = @"C:\git\HafslundStrom\HafslundData.Authorize\src\HafslundData.Authorize.csproj";
-
-            string[] filenames = Directory.GetFiles(path, "*.csproj", SearchOption.AllDirectories);
-
-            //foreach (var item in filenames)
-            //{
-            //    Console.WriteLine(item);
-
-            //}
 
             if (string.IsNullOrWhiteSpace(path))
             {
-                Console.WriteLine("It would really help if you provide a .csproj path");
+                Console.WriteLine("Usage: dotnet run [start directory]");
 
                 return;
             }
 
-            var helper = new PackageHelper();
+            var files = Directory.GetFiles(path, "*.csproj", SearchOption.AllDirectories);
 
-            foreach (var file in filenames)
+            var helper = new ProgramHelper();
+            var sb = new StringBuilder();
+
+            foreach (var file in files)
             {
                 var result = helper.ProcessProject(file);
 
                 foreach (var item in result.PackageReferences)
                 {
-                    Console.WriteLine($"{result.Name};{result.DefaultNamespace};{result.AssemblyName};{result.Framework};{item.Name};{item.Version};{item.ReferenceType}");
+                    sb.AppendLine($"{result.Name};{result.DefaultNamespace};{result.AssemblyName};{result.Framework};{item.Name};{item.Version};{item.ReferenceType}");
                 }
 
                 foreach (var item in result.References)
                 {
-                    Console.WriteLine($"{result.Name};{result.DefaultNamespace};{result.AssemblyName};{result.Framework};{item.Name};{item.Version};{item.ReferenceType}");
+                    sb.AppendLine($"{result.Name};{result.DefaultNamespace};{result.AssemblyName};{result.Framework};{item.Name};{item.Version};{item.ReferenceType}");
                 }
             }
+
+            File.WriteAllText(@"c:\temp\trash\references.csv", sb.ToString());
         }
     }
 }

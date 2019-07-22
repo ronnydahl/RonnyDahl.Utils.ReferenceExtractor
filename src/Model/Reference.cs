@@ -1,4 +1,4 @@
-﻿namespace ReferenceExtractor.Model
+﻿namespace RonnyDahl.Utils.ReferenceExtractor.Model
 {
     public class Reference
     {

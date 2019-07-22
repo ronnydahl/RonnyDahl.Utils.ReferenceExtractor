@@ -2,11 +2,11 @@
 using System.IO;
 using System.Linq;
 using System.Xml.Linq;
-using ReferenceExtractor.Model;
+using RonnyDahl.Utils.ReferenceExtractor.Model;
 
-namespace ReferenceExtractor.Helper
+namespace RonnyDahl.Utils.ReferenceExtractor.Helper
 {
-    public class PackageHelper
+    public class ProgramHelper
     {
         public Project ProcessProject(string path)
         {
@@ -21,27 +21,6 @@ namespace ReferenceExtractor.Helper
             project.References = GetReferences(document, ReferenceType.AssemblyReference);
 
             return project;
-        }
-
-        public List<Reference> GetReferences(string path)
-        {
-            var document = XDocument.Load(path);
-
-            var projectName = new FileInfo(path).Name;
-
-            var project = GetProject(document);
-            project.Name = projectName;
-
-            var packageReferences = GetReferences(document, ReferenceType.PackageReference);
-            var references = GetReferences(document, ReferenceType.AssemblyReference);
-
-            var result = new List<Reference>();
-            result.AddRange(packageReferences);
-            result.AddRange(references);
-
-            project.References = result;
-
-            return result;
         }
 
         private Project GetProject(XDocument document)

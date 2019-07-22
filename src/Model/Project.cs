@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace ReferenceExtractor.Model
+namespace RonnyDahl.Utils.ReferenceExtractor.Model
 {
     public class Project
     {
