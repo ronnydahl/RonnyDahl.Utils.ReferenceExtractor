@@ -25,6 +25,8 @@ namespace RonnyDahl.Utils.ReferenceExtractor
             var helper = new ProgramHelper();
             var sb = new StringBuilder();
 
+            sb.AppendLine($"Project;DefaultNamespace;AssemblyName;Framework;ReferenceName;Version;ReferenceType");
+
             foreach (var file in files)
             {
                 var result = helper.ProcessProject(file);
