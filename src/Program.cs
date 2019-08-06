@@ -1,7 +1,9 @@
 ﻿using System;
 using System.IO;
 using System.Text;
+using CommandLine;
 using RonnyDahl.Utils.ReferenceExtractor.Helper;
+using RonnyDahl.Utils.ReferenceExtractor.Model;
 
 namespace RonnyDahl.Utils.ReferenceExtractor
 {
@@ -11,21 +13,31 @@ namespace RonnyDahl.Utils.ReferenceExtractor
         {
             Console.Clear();
 
-            var path = args.Length != 0 ? args[0] : string.Empty;
+            var startPath = string.Empty;
+            var outputFile = string.Empty;
 
-            if (string.IsNullOrWhiteSpace(path))
+            Parser.Default.ParseArguments<Options>(args).WithParsed(option =>
             {
-                Console.WriteLine("Usage: dotnet run [start directory]");
+                startPath = option.InputFolder;
+                outputFile = option.OutputFile;
+            });
 
+            if (string.IsNullOrWhiteSpace(startPath))
+            {
                 return;
             }
 
-            var files = Directory.GetFiles(path, "*.csproj", SearchOption.AllDirectories);
+            if (string.IsNullOrWhiteSpace(outputFile))
+            {
+                return;
+            }
+
+            var files = Directory.GetFiles(startPath, "*.csproj", SearchOption.AllDirectories);
 
             var helper = new ProgramHelper();
             var sb = new StringBuilder();
 
-            sb.AppendLine($"Project;DefaultNamespace;AssemblyName;Framework;ReferenceName;Version;ReferenceType");
+            sb.AppendLine("Project;DefaultNamespace;AssemblyName;Framework;ReferenceName;Version;ReferenceType");
 
             foreach (var file in files)
             {
@@ -42,7 +54,10 @@ namespace RonnyDahl.Utils.ReferenceExtractor
                 }
             }
 
-            File.WriteAllText(@"c:\temp\trash\references.csv", sb.ToString());
+            File.WriteAllText(outputFile, sb.ToString());
+
+            Console.WriteLine($"CSV exported to: {outputFile}");
+            Console.WriteLine();
         }
     }
 }
